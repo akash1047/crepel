@@ -26,7 +26,7 @@ func Start(in, out *os.File) {
 		for tok, ok := l.NextToken(); tok.Type != token.EOF; tok, ok = l.NextToken() {
 			fmt.Fprintf(out, "%+v\n", tok)
 			if !ok {
-				fmt.Fprintf(out, "\x1b[31merror:\x1b[0m %s\n", l.LastError())
+				fmt.Fprintf(out, "opps! \x1b[1;31merror:\x1b[0m %s\n", l.LastError())
 			}
 		}
 	}
