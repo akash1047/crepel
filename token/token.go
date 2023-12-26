@@ -3,14 +3,14 @@ package token
 type TokenType string
 
 type Token struct {
-	Type     TokenType
-	Literal  string
-	Position int
+	Type    TokenType
+	Literal string
+	// Position int
 }
 
-func (t *Token) Span() (int, int) {
-	return t.Position, t.Position + len(t.Literal)
-}
+// func (t *Token) Span() (int, int) {
+// 	return t.Position, t.Position + len(t.Literal)
+// }
 
 const (
 	ILLEGAL = "ILLEGAL"
@@ -87,22 +87,22 @@ const (
 
 	// preprocessors
 
-	P_IF    = "#if"
-	P_ELIF  = "#elif"
-	P_ELSE  = "#else"
-	P_ENDIF = "#endif"
-
-	P_IFDEF  = "#ifdef"
-	P_IFNDEF = "#ifndef"
-	P_DEFINE = "#define"
-	P_UNDEF  = "#undef"
-
-	P_INCLUDE = "#include"
-	P_LINE    = "#line"
-	P_ERROR   = "#error"
-	P_PRAGMA  = "#pragma"
-
-	P_DEFINED = "#defined"
+	// P_IF    = "#if"
+	// P_ELIF  = "#elif"
+	// P_ELSE  = "#else"
+	// P_ENDIF = "#endif"
+	//
+	// P_IFDEF  = "#ifdef"
+	// P_IFNDEF = "#ifndef"
+	// P_DEFINE = "#define"
+	// P_UNDEF  = "#undef"
+	//
+	// P_INCLUDE = "#include"
+	// P_LINE    = "#line"
+	// P_ERROR   = "#error"
+	// P_PRAGMA  = "#pragma"
+	//
+	// P_DEFINED = "#defined"
 
 	// keywords [ excluding c23, underscore prefixed ]
 
@@ -215,30 +215,30 @@ func LookupIdent(literal string) TokenType {
 	return IDENT
 }
 
-var preprocessors = map[string]TokenType{
-	"#if":    P_IF,
-	"#elif":  P_ELIF,
-	"#else":  P_ELSE,
-	"#endif": P_ENDIF,
-
-	"#ifdef":  P_IFDEF,
-	"#ifndef": P_IFNDEF,
-	"#define": P_DEFINE,
-	"#undef":  P_UNDEF,
-
-	"#include": P_INCLUDE,
-	"#line":    P_LINE,
-	"#error":   P_ERROR,
-	"#pragma":  P_PRAGMA,
-
-	"#defined": P_DEFINED,
-}
-
-func LookupPreprocessor(literal string) TokenType {
-	if pre, ok := preprocessors[literal]; ok {
-		return pre
-	}
-
-	// we could return ILLEGAL_PREPROCESSOR
-	return ILLEGAL
-}
+// var preprocessors = map[string]TokenType{
+// 	"#if":    P_IF,
+// 	"#elif":  P_ELIF,
+// 	"#else":  P_ELSE,
+// 	"#endif": P_ENDIF,
+//
+// 	"#ifdef":  P_IFDEF,
+// 	"#ifndef": P_IFNDEF,
+// 	"#define": P_DEFINE,
+// 	"#undef":  P_UNDEF,
+//
+// 	"#include": P_INCLUDE,
+// 	"#line":    P_LINE,
+// 	"#error":   P_ERROR,
+// 	"#pragma":  P_PRAGMA,
+//
+// 	"#defined": P_DEFINED,
+// }
+//
+// func LookupPreprocessor(literal string) TokenType {
+// 	if pre, ok := preprocessors[literal]; ok {
+// 		return pre
+// 	}
+//
+// 	// we could return ILLEGAL_PREPROCESSOR
+// 	return ILLEGAL
+// }
